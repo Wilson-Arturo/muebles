@@ -21,6 +21,7 @@ return new class extends Migration
             $table->integer('codigo_barras');
             $table->integer('stock');
             $table->unsignedBigInteger('id_categoria');
+            $table->foreign('id_categoria')->references('id_categoria')->on('categoria')->onDelete('cascade');
             // $table->foreing('')->references('')->on('');
             $table->softDeletes();
             $table->timestamps();

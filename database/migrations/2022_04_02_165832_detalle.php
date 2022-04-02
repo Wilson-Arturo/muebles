@@ -13,10 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tipo_de_usuario', function (Blueprint $table) {
-            $table->bigIncrements('id_tipo');
-            $table->string('tipo_usuario');
-            // $table->foreing('id_tipo')->references('id_tipo')->on('usuario');
+        Schema::create('detalle', function (Blueprint $table) {
+            $table->bigIncrements('id_detalle');
+            $table->integer('cantidad');
+            $table->unsignedBigInteger('id_producto');
+            $table->unsignedBigInteger('id_venta');
+            
+            $table->foreign('id_venta')->references('id_venta')->on('venta')->onDelete('cascade');
+            $table->foreign('id_producto')->references('id_productos')->on('productos')->onDelete('cascade');
             // $table->foreing('')->references('')->on('');
             $table->softDeletes();
             $table->timestamps();
@@ -30,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tipo_de_usuario');
+        Schema::dropIfExists('detalle');
     }
 };
