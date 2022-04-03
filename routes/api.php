@@ -17,3 +17,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+// Route::resource(name: 'usuario', controller: 'UsuarioController');
+Route::get('/productos', 'App\Http\Controllers\ProductoController@index');//mostrar todos los registros
+Route::post('/productos', 'App\Http\Controllers\ProductoController@store');//crear un registro
+Route::put('/productos/{id_productos}', 'App\Http\Controllers\ProductoController@update');//actualizar
+Route::delete('/productos/{id_productos}', 'App\Http\Controllers\ProductoController@destroy');//borrar
