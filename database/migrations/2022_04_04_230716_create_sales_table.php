@@ -13,18 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('venta', function (Blueprint $table) {
+        Schema::create('sales', function (Blueprint $table) {
             $table->bigIncrements('id_venta');
-            $table->unsignedBigInteger('id_usuario');
+            $table->unsignedBigInteger('id_user');
+            $table->foreign('id_user')->references('id_user')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger('id_metodo');
-            $table->integer('subtotal');
-            $table->integer('total');
-
-
-            // declaracion de las llaves foraneas
-            $table->foreign('id_usuario')->references('id_usuario')->on('usuario')->onDelete('cascade');
-            // $table->foreign('id_metodo')->references('id_metodo')->on('metodo_pago')->onDelete('cascade');
-            $table->softDeletes();
+            $table->foreign('id_metodo')->references('id_metodo')->on('payment')->onDelete('cascade');
+            $table->float('subtotal');
+            $table->float('total');
             $table->timestamps();
         });
     }
@@ -36,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('venta');
+        Schema::dropIfExists('sales');
     }
 };

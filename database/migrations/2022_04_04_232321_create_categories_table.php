@@ -13,12 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tipo_de_usuario', function (Blueprint $table) {
-            $table->bigIncrements('id_tipo');
-            $table->string('tipo_usuario');
-            // $table->foreing('id_tipo')->references('id_tipo')->on('usuario');
-            // $table->foreing('')->references('')->on('');
-            $table->softDeletes();
+        Schema::create('categories', function (Blueprint $table) {
+            $table->bigIncrements('id_categoria');
+            $table->string('nombre_categoria');
             $table->timestamps();
         });
     }
@@ -30,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tipo_de_usuario');
+        Schema::dropIfExists('categories');
     }
 };

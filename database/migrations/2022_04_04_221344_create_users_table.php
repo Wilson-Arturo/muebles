@@ -13,16 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('usuario', function (Blueprint $table) {
-            $table->bigIncrements('id_usuario');
+        Schema::create('users', function (Blueprint $table) {
+            $table->bigIncrements('id_user');
             $table->string('nombre');
-            $table->integer('contraseña');
+            $table->string('contraseña');
             $table->string('direccion');
             $table->string('correo');
-            $table->unsignedBigInteger('id_tipo');
-            $table->foreign('id_tipo')->references('id_tipo')->on('tipo_de_usuario')->onDelete('cascade');
-            // $table->foreing('tipo_usuario')->references('id_tipo')->on('tipo_de_usuario');
-            $table->softDeletes();
+            $table->unsignedBigInteger('id_type');
+            $table->foreign('id_type')->references('id_type')->on('typeusers')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -34,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('usuario');
+        Schema::dropIfExists('users');
     }
 };

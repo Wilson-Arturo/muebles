@@ -13,13 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('detalle', function (Blueprint $table) {
-            $table->bigIncrements('id_detalle');
-            $table->integer('cantidad');
-            $table->unsignedBigInteger('id_producto');
-            $table->unsignedBigInteger('id_venta');
-            // $table->foreing('')->references('')->on('');
-            $table->softDeletes();
+        Schema::create('payment', function (Blueprint $table) {
+            $table->bigIncrements('id_metodo');
+            $table->string('tipo_metodo');
             $table->timestamps();
         });
     }
@@ -31,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('detalle');
+        Schema::dropIfExists('payment');
     }
 };
